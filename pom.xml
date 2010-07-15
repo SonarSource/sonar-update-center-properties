@@ -40,7 +40,7 @@
             </systemProperty>
             <systemProperty>
               <key>outputFile</key>
-              <value>${project.build.directory}/generated-sonar-updates.properties</value>
+              <value>${project.build.directory}/update-center.properties</value>
             </systemProperty>
           </systemProperties>
         </configuration>
