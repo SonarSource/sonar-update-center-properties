@@ -1,0 +1,17 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.sonarsource.update-center-properties</groupId>
+  <artifactId>sonar-update-center-properties</artifactId>
+  <version>1</version>
+
+  <dependencyManagement>
+    <dependencies>  
+      <dependency>
+        <groupId>org.sonarsource.update-center</groupId>
+        <artifactId>sonar-update-center</artifactId>
+	<version>(latest)</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>
+
