@@ -1,0 +1,19 @@
+language: java
+sudo: false
+install: true
+
+jdk:
+  - openjdk8
+
+cache:
+  directories:
+    - $HOME/.m2/repository
+
+script: |
+  mvn org.sonarsource.update-center:sonar-update-center-mojo:LATEST:generate-metadata \
+    -DinputFile=update-center-source.properties \
+    -DvalidateOnly=true \
+    -DoutputDir=/tmp \
+    -DeditionsDownloadBaseUrl=http://example.com \
+    -DeditionsOutputDir=/tmp
+
