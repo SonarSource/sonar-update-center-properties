@@ -70,7 +70,7 @@ The global field `archivedVersions` is a comma-delimited list of no-longer-prefe
 * Compatibility of Archived versions can overlap
 * If new version and previous version are compatible with the same versions of SonarQube, move the previous version into `archivedVersions` .
 
-The `sqVersions` field of a release block gives the versions of SonarQube with which the plugin version is compatible.
+The `sqVersions` field of a release block gives the versions of SonarQube with which the plugin version is compatible. 
 
 * Compatibility can be with a range, with a single version, or with a list of versions / ranges
 * Compatibility is generally listed as a range in the form of [start,end]
@@ -82,3 +82,19 @@ The `sqVersions` field of a release block gives the versions of SonarQube with w
   * :white_check_mark:  `[7.9,7.9.*]`
   * :no_entry_sign: `[7.9.*,LATEST]`
 * Multiple entries in a compatibility list should be comma-delimited, E.G. `5.5,[6.7,6.7.*],[7.3,LATEST]`
+
+### Moving a version from `publicVersions` to `archivedVersions`
+The Marketplace offers/prompts users to upgrade from one plugin version to another based on the compatibility ranges listed in the metadata files in this repo. To make sure all your users are offered your latest upgrade, you need to make sure the previous plugin version's compatibility range ends with whatever version of SonarQube was current at the time of your release. 
+
+So if the old plugin version was compatible with `LATEST`, replace that value with the current SonarQube release version, potentially ending with a wildcard for a point version. For instance, let's say we need to archive plugin version 1.4, and the current SonarQube version is 9.8.3:
+
+**From**
+`1.4.sqVersions=[8.9,LATEST]`
+
+**To**
+`1.4.sqVersions=[8.9,9.8.*]
+
+Using a wildcard in the end of the range future-proofs you against any subsequent point releases of the current version.
+
+### Compatibility with versions older than the current LTS
+New plugin versions should not be marked for compatibility with SonarQube versions older than the current LTS. 
