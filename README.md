@@ -81,7 +81,7 @@ The `sqVersions` field of a release block gives the versions of SonarQube with w
 * You can use a wildcard at the end of a range, but not at the beginning.
   * :white_check_mark:  `[7.9,7.9.*]`
   * :no_entry_sign: `[7.9.*,LATEST]`
-* Multiple entries in a compatibility list should be comma-delimited, E.G. `5.5,[6.7,6.7.*],[7.3,LATEST]`
+* Multiple entries in a compatibility list should be comma-delimited, E.G. `5.5,[6.5,6.7.*],[7.3,LATEST]`
 
 ### Moving a version from `publicVersions` to `archivedVersions`
 The Marketplace offers/prompts users to upgrade from one plugin version to another based on the compatibility ranges listed in the metadata files in this repo. To make sure all your users are offered your latest upgrade, you need to make sure the previous plugin version's compatibility range ends with whatever version of SonarQube was current at the time of your release. 
