@@ -92,7 +92,7 @@ So if the old plugin version was compatible with `LATEST`, replace that value wi
 `1.4.sqVersions=[8.9,LATEST]`
 
 **To**
-`1.4.sqVersions=[8.9,9.8.*]
+`1.4.sqVersions=[8.9,9.8.*]`
 
 Using a wildcard in the end of the range future-proofs you against any subsequent point releases of the current version.
 
