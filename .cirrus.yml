@@ -1,0 +1,16 @@
+container:
+  image: maven:3.9.4-eclipse-temurin-8
+
+only_if: $CIRRUS_PR != ""
+
+build_task:
+  maven_cache:
+    folder: ~/.m2/repository
+  build_script: |
+    mvn org.sonarsource.update-center:sonar-update-center-mojo:LATEST:generate-metadata \
+      -DinputFile=update-center-source.properties \
+      -DvalidateOnly=true \
+      -DoutputDir=/tmp \
+      -DeditionsDownloadBaseUrl=http://example.com \
+      -DeditionsOutputDir=/tmp
+  
