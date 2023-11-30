@@ -1,0 +1,36 @@
+env:
+  CIRRUS_SHELL: bash
+  CIRRUS_CLONE_DEPTH: 1
+
+po-generate-update-center-prod_task:
+  trigger_type: manual
+  eks_container:
+    dockerfile: .cirrus/Dockerfile
+    cluster_name: ${CIRRUS_CLUSTER_NAME}
+    builder_role: cirrus-builder
+    builder_image: docker-builder-v*
+    builder_instance_type: t2.small
+    builder_subnet_id: ${CIRRUS_AWS_SUBNET}
+    region: eu-central-1
+    namespace: default
+    cpu: 1
+    memory: 1G
+    docker_arguments:
+      CIRRUS_AWS_ACCOUNT: ${CIRRUS_AWS_ACCOUNT}
+  env:
+    ARTIFACTORY_URL: VAULT[development/kv/data/repox data.url]
+    ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
+    ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
+    AWS_ACCESS_KEY_ID: VAULT[development/aws/sts/downloads access_key]
+    AWS_SECRET_ACCESS_KEY: VAULT[development/aws/sts/downloads secret_key]
+    AWS_SESSION_TOKEN: VAULT[development/aws/sts/downloads security_token]
+    AWS_DEFAULT_REGION: eu-central-1
+    S3_BUCKET: downloads-cdn-eu-central-1-prod
+  maven_cache:
+    folder: ${CIRRUS_WORKING_DIR}/.m2/repository
+  script: |-
+    source po-generate-update-center-prod/generate.sh
+    source po-generate-update-center-prod/prepare_transfer_dir.sh
+    po-generate-update-center-prod/upload.sh
+  cleanup_before_cache_script:
+    - cleanup_maven_repository || true
