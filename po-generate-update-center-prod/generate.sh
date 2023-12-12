@@ -2,7 +2,7 @@
 set -euo pipefail
 
 : "${CIRRUS_BUILD_ID?}"
-: "${UPDATE_CENTER_PROPERTIES_FILE:-update-center-source.properties}"
+: "${UPDATE_CENTER_PROPERTIES_FILE:=update-center-source.properties}"
 OUTPUT_DIR="$PWD/target/update-center"
 OUTPUT_DIR_ALL_VERSIONS="$PWD/target/update-center-all-versions"
 EDITIONS_OUTPUT_DIR="$PWD/target/editions"
