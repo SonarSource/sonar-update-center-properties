@@ -47,6 +47,7 @@ po-generate-update-center-sc-prod_task:
     folder: ${CIRRUS_WORKING_DIR}/.m2/repository
   script: |-
     source po-generate-update-center-prod/generate.sh
+    po-generate-update-center-prod/upload-sc.sh
   cleanup_before_cache_script:
     - cleanup_maven_repository || true
   json_artifacts:
