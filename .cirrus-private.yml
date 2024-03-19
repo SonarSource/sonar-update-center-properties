@@ -1,6 +1,9 @@
 env:
   CIRRUS_SHELL: bash
   CIRRUS_CLONE_DEPTH: 1
+  ARTIFACTORY_URL: VAULT[development/kv/data/repox data.url]
+  AWS_DEFAULT_REGION: eu-central-1
+  S3_BUCKET: downloads-cdn-eu-central-1-prod
 
 eks_container:
   dockerfile: .cirrus/Dockerfile
@@ -19,14 +22,11 @@ eks_container:
 po-generate-update-center-prod_task:
   trigger_type: manual
   env:
-    ARTIFACTORY_URL: VAULT[development/kv/data/repox data.url]
     ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
     ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
     AWS_ACCESS_KEY_ID: VAULT[development/aws/sts/downloads access_key]
     AWS_SECRET_ACCESS_KEY: VAULT[development/aws/sts/downloads secret_key]
     AWS_SESSION_TOKEN: VAULT[development/aws/sts/downloads security_token]
-    AWS_DEFAULT_REGION: eu-central-1
-    S3_BUCKET: downloads-cdn-eu-central-1-prod
   maven_cache:
     folder: ${CIRRUS_WORKING_DIR}/.m2/repository
   script: |-
@@ -39,9 +39,11 @@ po-generate-update-center-prod_task:
 po-generate-update-center-sc-prod_task:
   trigger_type: manual
   env:
-    ARTIFACTORY_URL: VAULT[development/kv/data/repox data.url]
     ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
     ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
+    AWS_ACCESS_KEY_ID: VAULT[development/aws/sts/downloads access_key]
+    AWS_SECRET_ACCESS_KEY: VAULT[development/aws/sts/downloads secret_key]
+    AWS_SESSION_TOKEN: VAULT[development/aws/sts/downloads security_token]
     UPDATE_CENTER_PROPERTIES_FILE: update-center-source-sc.properties
   maven_cache:
     folder: ${CIRRUS_WORKING_DIR}/.m2/repository
