@@ -9,7 +9,7 @@ EDITIONS_OUTPUT_DIR="$PWD/target/editions"
 EDITIONS_OUTPUT_DIR_ALL_VERSIONS="$PWD/target/editions.allversions"
 BINTRAY_REPO=CommercialDistribution
 BINTRAY_PACKAGE=editions
-SONAR_UPDATE_CENTER_VERSION=1.31.0.1207
+SONAR_UPDATE_CENTER_VERSION=1.32.0.2441
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 pushd "${SCRIPT_DIR}/.." >/dev/null
