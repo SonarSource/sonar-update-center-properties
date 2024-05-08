@@ -1,3 +1,8 @@
 target/
 /.vs
 .idea/
+*.iml
+
+# po-generate-update-center-prod output
+po-generate-update-center-prod/sonar-update-center-properties/
+po-generate-update-center-prod/tranfer/
