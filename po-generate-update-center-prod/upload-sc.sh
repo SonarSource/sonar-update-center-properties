@@ -29,5 +29,6 @@ echo "Upload done"
 rm -rf "$TRANSFER_DIR"
 trap - EXIT
 
-DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[0].DomainName}[?starts_with(origin,'$S3_BUCKET')].id" --output text)
+DISTRIBUTION_ID=$(aws cloudfront list-distributions --query "DistributionList.Items[*].{id:Id,origin:Origins.Items[].{DomainName:DomainName}[?starts_with(DomainName,'$S3_BUCKET')]}[?not_null(origin)].id" --output text)
+echo "Create CloudFront invalidation for distribution $DISTRIBUTION_ID"
 aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "${paths[@]}"
