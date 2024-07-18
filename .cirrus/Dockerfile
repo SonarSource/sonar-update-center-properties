@@ -1,5 +1,5 @@
 ARG CIRRUS_AWS_ACCOUNT
-FROM ${CIRRUS_AWS_ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/base:j19-m3.9-latest
+FROM ${CIRRUS_AWS_ACCOUNT}.dkr.ecr.eu-central-1.amazonaws.com/base:j21-m3.9-latest
 
 USER root
 
