@@ -5,7 +5,7 @@ env:
   AWS_DEFAULT_REGION: eu-central-1
   S3_BUCKET: downloads-cdn-eu-central-1-prod
 
-eks_container:
+eks_container_template: &EKS_CONTAINER_TEMPLATE
   dockerfile: .cirrus/Dockerfile
   cluster_name: ${CIRRUS_CLUSTER_NAME}
   builder_role: cirrus-builder
@@ -21,6 +21,8 @@ eks_container:
 
 po-generate-update-center-prod_task:
   trigger_type: manual
+  eks_container:
+    <<: *EKS_CONTAINER_TEMPLATE
   env:
     ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
     ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
@@ -38,6 +40,8 @@ po-generate-update-center-prod_task:
 
 po-generate-update-center-sc-prod_task:
   trigger_type: manual
+  eks_container:
+    <<: *EKS_CONTAINER_TEMPLATE
   env:
     ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
     ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
