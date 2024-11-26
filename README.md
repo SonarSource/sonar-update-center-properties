@@ -35,7 +35,7 @@ Provide the following meta values:
 For the initially listed version create the following block:
 
 * `[versionId].description` =[free text. Spaces allowed. No quoting required]
-* `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in versions compatibility ranges' below]
+* `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in sqVersions compatibility ranges' below]
 * `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in sqVersions compatibility ranges' below]
 * `[versionId].date` =[release date with format: YYYY-MM-DD]
 * `[versionId].changelogUrl` =
@@ -52,15 +52,15 @@ Add file name (without `.properties` extension) to `plugins` value in https://gi
 Create a new block in the file with this format:
 
 * `[versionId].description` =[free text. Spaces allowed. No quoting required]
-* `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in versions compatibility ranges' below]
-* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in versions compatibility ranges' below]
+* `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in sqVersions compatibility ranges' below]
+* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in sqVersions compatibility ranges' below]
 * `[versionId].date` =[release date with format: YYYY-MM-DD]
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
 
 Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in sqs, sqcb, publicVersions, and archivedVersions' below
 
-### Filling in versions compatibility ranges (`sqs`, `sqcb` , `publicVersions` and `archivedVersions`)
+### Filling in `sqs`, `sqcb` , `publicVersions` and `archivedVersions`
 
 The global field `publicVersions` is a comma-delimited list of plugin versions which should be offered to the user in the Marketplace and listed in the Plugin Version Matrix.
 
