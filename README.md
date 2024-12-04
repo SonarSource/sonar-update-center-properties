@@ -36,7 +36,7 @@ For the initially listed version create the following block:
 
 * `[versionId].description` =[free text. Spaces allowed. No quoting required]
 * `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in versions compatibility ranges' below]
-* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in sqVersions compatibility ranges' below]
+* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in versions compatibility ranges' below]
 * `[versionId].date` =[release date with format: YYYY-MM-DD]
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
