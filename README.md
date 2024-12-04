@@ -36,7 +36,7 @@ For the initially listed version create the following block:
 
 * `[versionId].description` =[free text. Spaces allowed. No quoting required]
 * `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in versions compatibility ranges' below]
-* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in sqVersions compatibility ranges' below]
+* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in versions compatibility ranges' below]
 * `[versionId].date` =[release date with format: YYYY-MM-DD]
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
@@ -58,7 +58,7 @@ Create a new block in the file with this format:
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
 
-Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in sqs, sqcb, publicVersions, and archivedVersions' below
+Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in versions compatibility ranges' below
 
 ### Filling in versions compatibility ranges (`sqs`, `sqcb` , `publicVersions` and `archivedVersions`)
 
