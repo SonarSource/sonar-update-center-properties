@@ -58,7 +58,7 @@ Create a new block in the file with this format:
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
 
-Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in sqs, sqcb, publicVersions, and archivedVersions' below
+Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in versions compatibility ranges' below
 
 ### Filling in versions compatibility ranges (`sqs`, `sqcb` , `publicVersions` and `archivedVersions`)
 
