@@ -5,7 +5,7 @@ set -euo pipefail
 : "${UPDATE_CENTER_PROPERTIES_FILE:=update-center-source.properties}"
 OUTPUT_DIR="$PWD/target/update-center"
 OUTPUT_DIR_ALL_VERSIONS="$PWD/target/update-center-all-versions"
-SONAR_UPDATE_CENTER_VERSION=1.32.0.2441
+SONAR_UPDATE_CENTER_VERSION=1.33.0.2759
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 pushd "${SCRIPT_DIR}/.." >/dev/null
