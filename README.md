@@ -35,7 +35,8 @@ Provide the following meta values:
 For the initially listed version create the following block:
 
 * `[versionId].description` =[free text. Spaces allowed. No quoting required]
-* `[versionId].sqVersions` =[compatibility information. See 'Filling in sqVersions compatibility ranges' below]
+* `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in versions compatibility ranges' below]
+* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in versions compatibility ranges' below]
 * `[versionId].date` =[release date with format: YYYY-MM-DD]
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
@@ -51,14 +52,15 @@ Add file name (without `.properties` extension) to `plugins` value in https://gi
 Create a new block in the file with this format:
 
 * `[versionId].description` =[free text. Spaces allowed. No quoting required]
-* `[versionId].sqVersions` =[compatibility information. See 'Filling in sqVersions compatibility ranges' below]
+* `[versionId].sqs` =[compatibility with SonarQube Server. See 'Filling in versions compatibility ranges' below]
+* `[versionId].sqcb` =[compatibility with SonarQube Community Build. See 'Filling in versions compatibility ranges' below]
 * `[versionId].date` =[release date with format: YYYY-MM-DD]
 * `[versionId].changelogUrl` =
 * `[versionId].downloadUrl` =
 
-Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in sqVersions, publicVersions, and archivedVersions' below
+Add `[versionId]` to the `publicVersions` list. Move to `archivedVersions` any versions with identical compatibility. See also 'Filling in versions compatibility ranges' below
 
-### Filling in `sqVersions` , `publicVersions` and `archivedVersions`
+### Filling in versions compatibility ranges (`sqs`, `sqcb` , `publicVersions` and `archivedVersions`)
 
 The global field `publicVersions` is a comma-delimited list of plugin versions which should be offered to the user in the Marketplace and listed in the Plugin Version Matrix.
 
@@ -70,7 +72,11 @@ The global field `archivedVersions` is a comma-delimited list of no-longer-prefe
 * Compatibility of Archived versions can overlap
 * If new version and previous version are compatible with the same versions of SonarQube, move the previous version into `archivedVersions` .
 
-The `sqVersions` field of a release block gives the versions of SonarQube with which the plugin version is compatible. 
+The `sqs` field of a release block gives the versions of SonarQube Server with which the plugin version is compatible. 
+The `sqcb` field of a release block gives the versions of SonarQube Community Build with which the plugin version is compatible. 
+The two fields are entirely separate, and may overlap. 
+
+The `sqVersions` field is deprecated and not used beyond SonarQube 10.7
 
 * Compatibility can be with a range, with a single version, or with a list of versions / ranges
 * Compatibility is generally listed as a range in the form of [start,end]
@@ -89,10 +95,10 @@ The Marketplace offers/prompts users to upgrade from one plugin version to anoth
 So if the old plugin version was compatible with `LATEST`, replace that value with the current SonarQube release version, potentially ending with a wildcard for a point version. For instance, let's say we need to archive plugin version 1.4, and the current SonarQube version is 9.8.3:
 
 **From**
-`1.4.sqVersions=[8.9,LATEST]`
+`1.4.sqs=[8.9,LATEST]`
 
 **To**
-`1.4.sqVersions=[8.9,9.8.*]`
+`1.4.sqs=[8.9,9.8.*]`
 
 Using a wildcard in the end of the range future-proofs you against any subsequent point releases of the current version.
 
