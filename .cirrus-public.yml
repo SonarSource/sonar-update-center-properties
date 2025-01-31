@@ -7,7 +7,7 @@ build_task:
   maven_cache:
     folder: ~/.m2/repository
   build_script: |
-    mvn org.sonarsource.update-center:sonar-update-center-mojo:1.34.0.2766:generate-metadata \
+    mvn org.sonarsource.update-center:sonar-update-center-mojo:1.35.0.2835:generate-metadata \
       -DinputFile=update-center-source.properties \
       -DvalidateOnly=true \
       -DoutputDir=/tmp
