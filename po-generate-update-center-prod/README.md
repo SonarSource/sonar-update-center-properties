@@ -7,19 +7,16 @@ This is for local usage.
 ### Requirements
 
 - direnv https://direnv.net/
-- Vault CLI https://www.vaultproject.io/downloads
-- Vault setup
-  [xtranet/RE/HashiCorp+Vault#Generate-TOTP-URIs-(admin)](https://xtranet-sonarsource.atlassian.net/wiki/spaces/RE/pages/2466316312/HashiCorp+Vault#Generate-TOTP-URIs-(admin))
-- JQ (Stedolan) https://stedolan.github.io/jq/download/
 - Maven Developer
   setup [xtranet/DEV/Developer+Box#Maven-Settings](https://xtranet-sonarsource.atlassian.net/wiki/spaces/DEV/pages/776711/Developer+Box#Maven-Settings)
+- Access to `SonarSource-Staging` AWS account `RECDNElevatedStaging` role
 
 ### Usage
 
 ```shell
 cd po-generate-update-center-prod
-vault-login-staging
 direnv allow
+aws sso login --sso-session sonar
 ```
 
 The environment will now be provisioned to work with Staging account.

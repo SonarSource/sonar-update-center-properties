@@ -5,7 +5,7 @@ env:
   AWS_DEFAULT_REGION: eu-central-1
   S3_BUCKET: downloads-cdn-eu-central-1-prod
 
-eks_container:
+eks_container_template: &EKS_CONTAINER_TEMPLATE
   dockerfile: .cirrus/Dockerfile
   cluster_name: ${CIRRUS_CLUSTER_NAME}
   builder_role: cirrus-builder
@@ -21,15 +21,17 @@ eks_container:
 
 po-generate-update-center-prod_task:
   trigger_type: manual
+  eks_container:
+    <<: *EKS_CONTAINER_TEMPLATE
   env:
-    ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
-    ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
+    ARTIFACTORY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-public-reader access_token]
     AWS_ACCESS_KEY_ID: VAULT[development/aws/sts/downloads access_key]
     AWS_SECRET_ACCESS_KEY: VAULT[development/aws/sts/downloads secret_key]
     AWS_SESSION_TOKEN: VAULT[development/aws/sts/downloads security_token]
   maven_cache:
     folder: ${CIRRUS_WORKING_DIR}/.m2/repository
   script: |-
+    cp ~/.m2/settings-public-auth.xml ~/.m2/settings.xml
     source po-generate-update-center-prod/generate.sh
     source po-generate-update-center-prod/prepare_transfer_dir.sh
     po-generate-update-center-prod/upload.sh
@@ -38,9 +40,10 @@ po-generate-update-center-prod_task:
 
 po-generate-update-center-sc-prod_task:
   trigger_type: manual
+  eks_container:
+    <<: *EKS_CONTAINER_TEMPLATE
   env:
-    ARTIFACTORY_PRIVATE_USERNAME: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader username]
-    ARTIFACTORY_PRIVATE_PASSWORD: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-private-reader access_token]
+    ARTIFACTORY_ACCESS_TOKEN: VAULT[development/artifactory/token/${CIRRUS_REPO_OWNER}-${CIRRUS_REPO_NAME}-public-reader access_token]
     AWS_ACCESS_KEY_ID: VAULT[development/aws/sts/downloads access_key]
     AWS_SECRET_ACCESS_KEY: VAULT[development/aws/sts/downloads secret_key]
     AWS_SESSION_TOKEN: VAULT[development/aws/sts/downloads security_token]
@@ -48,6 +51,7 @@ po-generate-update-center-sc-prod_task:
   maven_cache:
     folder: ${CIRRUS_WORKING_DIR}/.m2/repository
   script: |-
+    cp ~/.m2/settings-public-auth.xml ~/.m2/settings.xml
     source po-generate-update-center-prod/generate.sh
     po-generate-update-center-prod/upload-sc.sh
   cleanup_before_cache_script:
