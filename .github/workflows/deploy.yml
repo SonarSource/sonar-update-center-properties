@@ -7,6 +7,9 @@ jobs:
   generate-update-center-prod:
     runs-on: ubuntu-24.04-large
     environment: production
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -18,23 +21,22 @@ jobs:
         id: secrets
         uses: SonarSource/vault-action-wrapper@320bd31b03e5dacaac6be51bbbb15adf7caccc32 # v3.1.0
         with:
-          paths: |
-            development/artifactory/token/${{ github.repository_owner }}-${{ github.event.repository.name }}-public-reader
-            development/aws/sts/downloads
-            development/kv/data/repox
-      - name: Prepare Maven Settings
-        run: cp ~/.m2/settings-public-auth.xml ~/.m2/settings.xml
-      - name: Generate Update Center Metadata
+          secrets: |
+            development/artifactory/token/{REPO_OWNER_NAME_DASH}-public-reader access_token | ARTIFACTORY_ACCESS_TOKEN;
+            development/kv/data/repox url | ARTIFACTORY_URL;
+            development/aws/sts/downloads access_key | AWS_ACCESS_KEY_ID;
+            development/aws/sts/downloads secret_key | AWS_SECRET_ACCESS_KEY;
+            development/aws/sts/downloads security_token | AWS_SESSION_TOKEN;
+      - name: Generate and Upload Update Center Metadata
         run: |
           source po-generate-update-center-prod/generate.sh
           source po-generate-update-center-prod/prepare_transfer_dir.sh
-      - name: Upload to S3
-        run: po-generate-update-center-prod/upload.sh
+          po-generate-update-center-prod/upload.sh
         env:
           AWS_ACCESS_KEY_ID: ${{ fromJSON(steps.secrets.outputs.vault).AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ fromJSON(steps.secrets.outputs.vault).AWS_SECRET_ACCESS_KEY }}
           AWS_SESSION_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).AWS_SESSION_TOKEN }}
           S3_BUCKET: downloads-cdn-eu-central-1-prod
           AWS_DEFAULT_REGION: eu-central-1
-          ARTIFACTORY_URL: ${{ fromJSON(steps.secrets.outputs.vault).ARTIFACTORY_URL }}
           ARTIFACTORY_ACCESS_TOKEN: ${{ fromJSON(steps.secrets.outputs.vault).ARTIFACTORY_ACCESS_TOKEN }}
+          ARTIFACTORY_URL: ${{ fromJSON(steps.secrets.outputs.vault).ARTIFACTORY_URL }}
