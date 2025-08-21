@@ -5,7 +5,7 @@ on:
 
 jobs:
   generate-update-center-prod:
-    runs-on: sonar-runner-large
+    runs-on: ubuntu-24.04-large
     environment: production
     steps:
       - name: Checkout
