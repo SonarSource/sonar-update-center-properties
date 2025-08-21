@@ -31,10 +31,9 @@ EOF
 
 ## Production
 
-For use with Cirrus CI.
+For use with GitHub actions.
 
 This will deploy in Prod account.
 
-1. Open https://cirrus-ci.com/github/SonarSource/sonar-update-center-properties/master
-2. Browse in the more recent build to the `po-generate-update-center-prod` task
-3. Click on the Trigger button
+1. Open https://github.com/SonarSource/sonar-update-center-properties/actions/workflows/deploy.yml
+2. Click Run workflow
