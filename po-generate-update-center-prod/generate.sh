@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-: "${CIRRUS_BUILD_ID?}"
+: "${GITHUB_RUN_ID}"
 : "${UPDATE_CENTER_PROPERTIES_FILE:=update-center-source.properties}"
 OUTPUT_DIR="$PWD/target/update-center"
 OUTPUT_DIR_ALL_VERSIONS="$PWD/target/update-center-all-versions"
