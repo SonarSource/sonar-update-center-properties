@@ -19,7 +19,7 @@ jobs:
           version: 2026.3.13
       - name: Vault Secrets
         id: secrets
-        uses: SonarSource/vault-action-wrapper@545e7cfbb5528e7009a1edcc83e073898d292627 # v3.2.0
+        uses: SonarSource/vault-action-wrapper@v3
         with:
           secrets: |
             development/artifactory/token/{REPO_OWNER_NAME_DASH}-public-reader access_token | ARTIFACTORY_ACCESS_TOKEN;
