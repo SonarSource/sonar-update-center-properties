@@ -15,7 +15,7 @@ jobs:
           version: 2026.3.13
       - name: Maven Build & Validate
         run: |
-          mvn org.sonarsource.update-center:sonar-update-center-mojo:1.35.0.2835:generate-metadata \
+          mvn org.sonarsource.update-center:sonar-update-center-mojo:1.37.0.4844:generate-metadata \
             -DinputFile=update-center-source.properties \
             -DvalidateOnly=true \
             -DoutputDir=/tmp
