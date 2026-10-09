@@ -1,6 +1,23 @@
-# Sonar Update Center Properties
+<!-- Sonar Marketing hosts these approved brand assets on its Kentico Kontent CDN (assets-eu-01.kc-usercontent.com). Shared URLs are intentional; consult Marketing before replacing them. -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://assets-eu-01.kc-usercontent.com/ef593040-b591-0198-9506-ed88b30bc023/a23fc7ba-23f0-489a-829d-ed88c0748521/Sonar_Logo_Dark%20Backgrounds.svg">
+    <img src="https://assets-eu-01.kc-usercontent.com/ef593040-b591-0198-9506-ed88b30bc023/82c13eba-d95c-4bb8-8007-7ce77c14e043/Sonar_Logo_Light%20Backgrounds.svg" alt="Sonar logo" width="400">
+  </picture>
+</p>
+
 [![Build Status](https://github.com/SonarSource/sonar-update-center-properties/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/SonarSource/sonar-update-center-properties/actions/workflows/build.yml)
-This allows you to deploy a plugin to the [SonarQube Marketplace](https://docs.sonarqube.org/latest/instance-administration/marketplace/).
+
+<!-- sonar-marketing:start -->
+<!-- Marketing maintains this section. For wording changes, consult the relevant Product Marketing Manager (PMM). Repository maintainers review accuracy and merge changes. -->
+
+# Sonar update center properties
+
+This repository contains plugin metadata used by the SonarQube Marketplace. Plugin maintainers can use the instructions below to register a plugin, publish version information, and specify compatibility ranges.
+
+To learn more about Sonar products, visit the [Sonar website](https://www.sonarsource.com/products/sonarqube/).
+
+<!-- sonar-marketing:end -->
 
 [Read here for more information](https://community.sonarsource.com/t/deploying-to-the-marketplace/35236).
 
