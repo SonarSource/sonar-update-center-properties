@@ -13,7 +13,7 @@
 
 # Sonar update center properties
 
-This repository contains plugin metadata used by the SonarQube Marketplace. Plugin maintainers can use the instructions below to register a plugin, publish version information, and specify compatibility ranges.
+This repository contains plugin metadata used by the [SonarQube Marketplace](https://docs.sonarsource.com/sonarqube-server/server-update-and-maintenance/update/marketplace). Plugin maintainers can use the instructions below to register a plugin, publish version information, and specify compatibility ranges.
 
 To learn more about Sonar products, visit the [Sonar website](https://www.sonarsource.com/products/sonarqube/).
 
